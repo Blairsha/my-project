@@ -9,12 +9,6 @@ app = FastAPI()
 model_path = "laptop_price_model.pkl"
 model = joblib.load(model_path)
 
-# Корневой эндпоинт
-@app.get("/")
-async def root():
-    return {"message": "Добро пожаловать в API для предсказания цен на ноутбуки!"}
-
-# Эндпоинт для предсказания
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     content = await file.read()
